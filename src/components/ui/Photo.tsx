@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { asset } from "../../lib/asset";
 
 interface Props {
   src: string;
@@ -25,7 +26,7 @@ export function Photo({ src, alt, width, height, className = "", eager }: Props)
   }
   return (
     <img
-      src={src}
+      src={asset(src)}
       alt={alt}
       width={width}
       height={height}

@@ -1,5 +1,6 @@
 import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import type { LottieRefCurrentProps } from "lottie-react";
+import { asset } from "../../lib/asset";
 import { motionValue, useInView, useMotionValueEvent, useReducedMotion, type MotionValue } from "motion/react";
 
 // lottie-web is heavy: keep it (and every JSON) out of the main chunk
@@ -12,7 +13,7 @@ const cache = new Map<string, Promise<object>>();
 function load(name: string) {
   let p = cache.get(name);
   if (!p) {
-    p = fetch(`/animations/${name}.json`).then((r) => {
+    p = fetch(asset(`animations/${name}.json`)).then((r) => {
       if (!r.ok) throw new Error(`Lottie ${name}: ${r.status}`);
       return r.json();
     });
